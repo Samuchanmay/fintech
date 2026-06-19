@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TDC Control — Sal de tus deudas</title>
+  <meta name="description" content="Lleva el control de tus tarjetas de crédito, gastos y plan para salir de deudas." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./src/styles/main.css" />
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div id="root">
+    <div id="loading-fallback" style="padding:40px;font-family:sans-serif;color:#8B97A3;">
+      Cargando TDC Control…
+    </div>
+  </div>
+
+  <script>
+    // Si algo falla al cargar (red, CDN caído, error de sintaxis en un archivo),
+    // este mensaje se queda visible en vez de mostrar una pantalla en blanco
+    // sin explicación.
+    window.addEventListener("error", function (e) {
+      const fallback = document.getElementById("loading-fallback");
+      if (fallback) {
+        fallback.innerHTML =
+          '<strong style="color:#FF6B5B;">No se pudo cargar la app.</strong><br><br>' +
+          'Detalle técnico: ' + (e.message || "error desconocido") + '<br><br>' +
+          'Esto casi siempre significa que no hay conexión a internet ' +
+          '(la app carga React desde un CDN), o que falta algún archivo. ' +
+          'Revisa la consola del navegador (F12) para más detalle.';
+      }
+    });
+  </script>
+
+  <script src="./src/utils/finance.js"></script>
+  <script src="./src/utils/supabaseStore.js"></script>
+
+  <script src="./src/components/UI.compiled.js"></script>
+  <script src="./src/components/Login.compiled.js"></script>
+  <script src="./src/modules/Dashboard.compiled.js"></script>
+  <script src="./src/modules/Tarjetas.compiled.js"></script>
+  <script src="./src/modules/Gastos.compiled.js"></script>
+  <script src="./src/modules/MSI.compiled.js"></script>
+  <script src="./src/modules/PlanDeudas.compiled.js"></script>
+  <script src="./src/modules/Simulador.compiled.js"></script>
+  <script src="./src/App.compiled.js"></script>
+</body>
+</html>

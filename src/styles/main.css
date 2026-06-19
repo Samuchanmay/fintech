@@ -1,0 +1,429 @@
+/* ============================================================
+   TDC CONTROL — Sistema de diseño
+   ------------------------------------------------------------
+   Concepto: "salir del agujero". No es fintech corporativo frío.
+   Fondo tinta profunda (no negro puro), acento verde-señal único
+   reservado para progreso/salud financiera, rojo/ámbar solo para
+   alertas reales. Números tratados con peso tipográfico — son el
+   contenido emocional central de la app.
+   ============================================================ */
+
+:root {
+  /* Paleta */
+  --ink: #0F1419;
+  --surface: #1C2530;
+  --surface-raised: #232E3B;
+  --border: #2E3A47;
+  --text: #E8E6E0;
+  --text-dim: #8B97A3;
+  --signal: #3DDC97;
+  --signal-dim: #2A9D6F;
+  --warn: #F4B740;
+  --danger: #FF6B5B;
+  --danger-dim: #C44A3D;
+
+  /* Tipografía */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Espaciado */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; }
+
+a { color: var(--signal); text-decoration: none; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+input, select {
+  font-family: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+input::placeholder { color: var(--text-dim); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Layout general ---------- */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-wrapper {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sidebar-brand {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.sidebar-tagline {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+  letter-spacing: 0.02em;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 2px;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover { background: var(--surface-raised); color: var(--text); }
+
+.nav-item.active {
+  background: var(--surface-raised);
+  color: var(--signal);
+  font-weight: 600;
+}
+
+.sidebar-account {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.main-content {
+  flex: 1;
+  padding: 32px 40px;
+  max-width: 1100px;
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.page-subtitle {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ---------- Tarjetas / cards ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kpi-value {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- El elemento firma: cuenta regresiva de libertad ---------- */
+
+.freedom-counter {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-raised) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.freedom-counter-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.freedom-counter-value {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--signal);
+}
+
+.freedom-counter-unit {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-dim);
+  margin-left: 8px;
+}
+
+.freedom-counter-date {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ---------- Semáforo / estatus ---------- */
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pill.sano { background: rgba(61, 220, 151, 0.15); color: var(--signal); }
+.status-pill.atencion { background: rgba(244, 183, 64, 0.15); color: var(--warn); }
+.status-pill.riesgo { background: rgba(255, 107, 91, 0.15); color: var(--danger); }
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Barra de progreso ---------- */
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+/* ---------- Tablas ---------- */
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th {
+  text-align: left;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+
+.data-table tr:hover td { background: var(--surface-raised); }
+
+/* ---------- Botones ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.btn-primary { background: var(--signal); color: var(--ink); }
+.btn-primary:hover { background: var(--signal-dim); }
+
+.btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--surface-raised); }
+
+.btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger-dim); }
+.btn-danger:hover { background: rgba(255, 107, 91, 0.1); }
+
+/* ---------- Modal ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 20, 25, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.form-group { margin-bottom: 14px; }
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select { width: 100%; }
+
+.form-row { display: flex; gap: 12px; }
+.form-row .form-group { flex: 1; }
+
+/* ---------- Empty states ---------- */
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-dim);
+}
+
+.empty-state-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 800px) {
+  .app-shell { flex-direction: column; }
+  .sidebar-wrapper {
+    width: 100%;
+    padding: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 12px;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);
+  }
+  .sidebar-brand, .sidebar-tagline { display: none; }
+  .nav-item { white-space: nowrap; width: auto; flex-shrink: 0; }
+  .sidebar-account {
+    margin-top: 0;
+    padding: 8px 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .sidebar-account > div { display: none; } /* ocultar correo y "Guardando…" en móvil para no saturar */
+  .sidebar-account .nav-item { width: auto; padding: 6px 12px; }
+  .main-content { padding: 20px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .freedom-counter-value { font-size: 40px; }
+}
